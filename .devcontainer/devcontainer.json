@@ -1,0 +1,43 @@
+{
+  "name": "OmniRoute Free Hosting",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/gh:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    }
+  },
+  "mounts": [
+    {
+      "source": "omniroute-data",
+      "target": "/workspaces/omniroute-data",
+      "type": "volume"
+    }
+  ],
+  "postCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+  "postStartCommand": "bash .devcontainer/scripts/post-start.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "forwardPorts": [20128, 20129],
+  "portsAttributes": {
+    "20128": {
+      "label": "OmniRoute Dashboard",
+      "onAutoForward": "notify"
+    },
+    "20129": {
+      "label": "OmniRoute API",
+      "onAutoForward": "silent"
+    }
+  }
+}
